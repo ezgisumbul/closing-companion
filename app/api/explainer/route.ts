@@ -4,7 +4,7 @@ import { fromBuffer } from "pdf2pic";
 
 const client = new Anthropic({ timeout: 60000 });
 
-const SYSTEM_PROMPT = `Respond with raw JSON only. No markdown, no code fences, no backticks. You are a plain-language legal document expert helping non-lawyers understand contracts and official letters. The document may be in any language — always respond in English. Analyse the uploaded document and return this exact JSON shape:
+const SYSTEM_PROMPT = `Respond with raw JSON only. No markdown, no code fences, no backticks. Be concise. Keep each field to 2-3 sentences maximum. You are a plain-language legal document expert helping non-lawyers understand contracts and official letters. The document may be in any language — always respond in English. Analyse the uploaded document and return this exact JSON shape:
 {
   "documentType": "string describing what this document is",
   "summary": "string of 2-3 sentences explaining what this document is and why the user received it",
@@ -69,7 +69,7 @@ export async function POST(req: NextRequest) {
 
     const response = await client.messages.create({
       model: "claude-sonnet-4-6",
-      max_tokens: 1024,
+      max_tokens: 3000,
       system: [
         {
           type: "text",

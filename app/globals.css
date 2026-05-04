@@ -3,25 +3,67 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --hf-primary: #1b8391;
+  --hf-primary-dark: #0e4d5d;
+  --hf-primary-d1: #14626d;
+  --hf-primary-l1: #5a989d;
+  --hf-primary-l2: #90b2b2;
+  --hf-primary-l4: #dce3e2;
+  --hf-primary-l5: #eff4f2;
+  --hf-secondary: #0d324d;
+  --hf-secondary-l1: #2c455d;
+  --hf-secondary-l2: #567083;
+  --hf-secondary-l4: #bfcbd9;
+  --hf-peach: #ed865f;
+  --hf-peach-dark: #e1693c;
+  --hf-peach-l4: #f2e9e4;
+  --hf-peach-l5: #faf6f4;
+  --hf-green: #62bb96;
+  --hf-green-dark: #1b915f;
+  --hf-green-l1: #c7f2cd;
+  --hf-green-l2: #eafaed;
+  --hf-blue: #3bb9cb;
+  --hf-blue-l2: #e5f6f5;
+  --hf-blue-l3: #f3fafb;
+  --hf-warning: #ffc737;
+  --hf-warning-dark: #e1a200;
+  --hf-warning-l1: #fff0cb;
+  --hf-warning-l2: #fff9ed;
+  --hf-error: #e27265;
+  --hf-error-l1: #fce3e3;
+  --hf-grey: #d4d4d4;
+  --hf-grey-l1: #ececec;
+  --hf-grey-l2: #f7f7f7;
+  --card-shadow: 0 3px 1px -2px rgba(0,0,0,.1), 0 2px 2px 0 rgba(0,0,0,.035), 0 1px 5px 0 rgba(0,0,0,.06);
+  --card-shadow-hover: 0 4px 20px 0 rgba(0,0,0,.1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.page-container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 32px 48px;
+}
+
+.feature-grid {
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+
+@media (max-width: 600px) {
+  .page-container { padding: 0 16px 48px; }
+  .feature-grid { grid-template-columns: 1fr !important; }
+  .cost-controls { flex-direction: column !important; }
+  .cost-rate-col { display: none; }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+  background: #ffffff;
+  color: var(--hf-secondary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
 }

@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Closing Companion
+
+A tool for expats who just got their German mortgage approved.
+
+**Two features:**
+- Smart Timeline — personalised week-by-week checklist of post-closing steps
+- Letter Validator — upload any payment request to check if it's legitimate
+
+**Built with:** Next.js 14, TypeScript, Tailwind CSS, Anthropic Claude API  
+**Live demo:** [your Vercel URL]
+
+Built as a portfolio project to demonstrate AI-native product thinking.
+
+---
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+cp .env.local.example .env.local  # add your ANTHROPIC_API_KEY
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Maintaining Tax Rates
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+German Grunderwerbsteuer rates are maintained in a single file:
 
-## Learn More
+```
+lib/taxRates.ts
+```
 
-To learn more about Next.js, take a look at the following resources:
+When legislation changes (rates are set by each federal state and do change), update the `rate` value for the relevant state in that file. The change will automatically flow through to both the landing page cost estimator and the timeline API route — no other files need touching.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The file also contains `NOTARKOSTEN_RATE`, `GRUNDBUCH_RATE`, and `MAKLER_RATE` constants for the other closing cost estimates shown in the estimator.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Push to GitHub
+2. Connect repo to Vercel
+3. Add `ANTHROPIC_API_KEY` in Vercel → Settings → Environment Variables
+4. Deploy
