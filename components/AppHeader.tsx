@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function AppHeader() {
   return (
     <header
@@ -11,6 +13,7 @@ export default function AppHeader() {
         borderBottom: "1px solid var(--hf-primary-l4)",
       }}
     >
+      <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>
       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <div
           style={{
@@ -42,6 +45,7 @@ export default function AppHeader() {
           Closing Companion
         </span>
       </div>
+      </Link>
     </header>
   );
 }
